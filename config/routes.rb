@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
-  resources :lectures
+  resources :lectures do 
+    member do
+      post 'toggle_student_attendance'
+    end
+  end
   resources :students
 
   root 'lectures#index'

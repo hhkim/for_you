@@ -60,6 +60,19 @@ class LecturesController < ApplicationController
       format.json { head :no_content }
     end
   end
+  
+  def toggle_student_attendance
+    @lecture = Lecture.find(params[:id])
+    @student = Student.find(params[:student_id])
+    @lesson_time = params[:lesson_time]
+
+    @attendance = StudentAttendance.where(lecture_id: @lecture.id, student_id: @student.id, lesson_time: @lesson_time).first
+    if @attendance
+      @attendance.change_present!
+    else
+      @attendance = StudentAttendance.create(lecture_id: @lecture.id, student_id: @student.id, lesson_time: @lesson_time, present: true)
+    end
+  end
 
   private
     # Use callbacks to share common setup or constraints between actions.

@@ -5,10 +5,33 @@
   <%= @lecture.name %>
 </p>
 
-<p>
-  <strong>Lesson time number:</strong>
-  <%= @lecture.lesson_time_number %>
-</p>
+<h2>수강생</h2>
+<table class="gridtable">
+    <thead>
+      <tr>
+        <td>학생 이름</td>        
+        <% @lecture.lesson_time_number.times do |time| %>
+        <td><%= "#{time + 1}차" %></td>
+        <% end %>
+      </tr>
+    </thead>
+    
+    <tbody>
+      <% @lecture.students.each do |student| %>
+      <tr>
+        <td><%= student.name %></td>
+        <% @lecture.lesson_time_number.times do |time| %>
+        <td>
+          <%= link_to toggle_student_attendance_lecture_path(@lecture, student_id: student.id, lesson_time: time), method: :post, remote: true, id: "present_link_#{@lecture.id}_#{student.id}_#{time}" do %>
+            <% sa = @lecture.student_attendances.where(student_id: student.id, lesson_time: time).first %>
+            <%= present_link_text(sa) %>
+          <% end %>
+        </td>
+        <% end %>
+      </tr>
+    <% end %>      
+    </tbody>
+</table>
 
 <%= link_to 'Edit', edit_lecture_path(@lecture) %> |
 <%= link_to 'Back', lectures_path %>
