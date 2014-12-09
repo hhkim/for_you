@@ -1,5 +1,9 @@
 <p id="notice"><%= notice %></p>
-
+<p>
+  Download:
+  <%= link_to "CSV", lectures_path(format: "csv") %> |
+  <%= link_to "Excel", lectures_path(format: "xls") %>
+</p>
 <p>
   <strong>Name:</strong>
   <%= @lecture.name %>
