@@ -1,0 +1,7 @@
+wb = xlsx_package.workbook
+wb.add_worksheet(name: "Lectures") do |sheet|
+  sheet.add_row ["Name"] ## Header values of Excel
+  @lectures.each do |lecture|
+    sheet.add_row [lecture.name]
+  end
+end

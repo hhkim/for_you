@@ -5,12 +5,11 @@ class LecturesController < ApplicationController
   # GET /lectures.json
   def index
     @lectures = Lecture.all
-     respond_to do |format|
-      
+  
+      respond_to do |format|
       format.html
-      format.csv { send_data @lectures.to_csv }
-      format.xls #{ send_data @lectures.to_csv(col_sep: "\t") }
-    end
+      format.xlsx
+      end
 
   end
 
