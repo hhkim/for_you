@@ -12,10 +12,10 @@
         <Cell><Data ss:Type="String">Release Date</Data></Cell>
 
       </Row>
-    <% @lecture.students.each do |student| %>
+    <% @lectures.each do |lecture| %>
       <Row>
-        <Cell><Data ss:Type="Number"><%= student.id %></Data></Cell>
-        <Cell><Data ss:Type="String"><%= student.name %></Data></Cell>
+        <Cell><Data ss:Type="Number"><%= lecture.id %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= lecture.name %></Data></Cell>
        
   
       </Row>
